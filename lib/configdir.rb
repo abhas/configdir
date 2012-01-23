@@ -11,8 +11,13 @@ module Configdir
     return @cfgdir
   end
 
-  def self.write
-
+  def self.write(configdir, s)
+    @settings = s
+    @settings.keys.each do |file|
+      f = File.open(configdir + "/" + file, "w")
+      f.write(@settings[file])
+      f.close
+    end
   end
 
 end
